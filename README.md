@@ -38,6 +38,8 @@ cd frontend
 npm install
 npm run dev
 ```
+The frontend of this project is built using the Antigravity framework, where UI files use the .ag extension. These files define the layout, pages, and components of the web interface. The .ag files can be edited in VS Code or any other IDE, but they are executed using the Antigravity runtime, not directly from the IDE.
+To run the project, first install the required dependencies using pip install antigravity fastapi uvicorn pandas numpy scikit-learn matplotlib seaborn. Then start the backend server with uvicorn main:app --reload. After that, run the frontend using antigravity run app.ag. Once both services are running, open the local server in your browser to access the sentiment analyzer web application.
 
 ## 📊 Model Information
 The model was trained on a dataset of ~241k comments using TF-IDF feature extraction and a Logistic Regression classifier, achieving high accuracy for sentiment classification.
@@ -62,6 +64,7 @@ sentiment_analyzer/
 ├── README.md
 ├── requirements.txt
 └── sentiment_data.csv
+
 
 
 
