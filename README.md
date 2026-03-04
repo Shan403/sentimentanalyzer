@@ -41,3 +41,25 @@ npm run dev
 
 ## 📊 Model Information
 The model was trained on a dataset of ~241k comments using TF-IDF feature extraction and a Logistic Regression classifier, achieving high accuracy for sentiment classification.
+
+sentiment_analyzer/
+├── backend/
+│   ├── main.py                # FastAPI server & CORS config
+│   ├── sentiment_predictor.py  # Model inference logic
+│   └── train_model.py          # ML Training pipeline
+├── frontend/
+│   ├── components/            # Visual UI components (.ag)
+│   ├── pages/                 # Multi-page views (.ag)
+│   ├── app.ag                 # Main application shell
+│   ├── main.js                # Frontend entry & routing
+│   ├── index.html             # HTML template
+│   ├── index.css              # Global styles
+│   ├── package.json           # Frontend dependencies
+│   └── vite.config.js         # Build configuration
+├── models/
+│   └── sentiment_model.pkl    # Trained ML model (Ignore in Git)
+├── .gitignore                 # Files to exclude from GitHub
+├── README.md                  # Project documentation
+├── requirements.txt           # Python dependencies
+└── sentiment_data.csv         # Training dataset (Ignore in Git)
+
