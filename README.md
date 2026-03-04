@@ -44,22 +44,24 @@ The model was trained on a dataset of ~241k comments using TF-IDF feature extrac
 
 sentiment_analyzer/
 ├── backend/
-│   ├── main.py                # FastAPI server & CORS config
-│   ├── sentiment_predictor.py  # Model inference logic
-│   └── train_model.py          # ML Training pipeline
+│   ├── main.py
+│   ├── sentiment_predictor.py
+│   └── train_model.py
 ├── frontend/
-│   ├── components/            # Visual UI components (.ag)
-│   ├── pages/                 # Multi-page views (.ag)
-│   ├── app.ag                 # Main application shell
-│   ├── main.js                # Frontend entry & routing
-│   ├── index.html             # HTML template
-│   ├── index.css              # Global styles
-│   ├── package.json           # Frontend dependencies
-│   └── vite.config.js         # Build configuration
+│   ├── components/
+│   ├── pages/
+│   ├── app.ag
+│   ├── index.css
+│   ├── index.html
+│   ├── main.js
+│   ├── package.json
+│   └── vite.config.js
 ├── models/
-│   └── sentiment_model.pkl    # Trained ML model (Ignore in Git)
-├── .gitignore                 # Files to exclude from GitHub
-├── README.md                  # Project documentation
-├── requirements.txt           # Python dependencies
-└── sentiment_data.csv         # Training dataset (Ignore in Git)
+│   └── sentiment_model.pkl
+├── .gitignore
+├── README.md
+├── requirements.txt
+└── sentiment_data.csv
+
+
 
