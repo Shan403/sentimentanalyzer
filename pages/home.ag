@@ -1,0 +1,95 @@
+<template>
+  <div class="home-page">
+    <div class="hero-section">
+      <h1 class="headline">Unlock Insights with our AI Sentiment Analyzer</h1>
+      <p class="description">
+        Instantly analyze text to determine if the sentiment is Positive, Neutral, or Negative. 
+        Powered by a custom-trained Logistic Regression NLP model, our tool delivers real-time intelligence.
+      </p>
+      <button class="primary-btn" @click="$router.push('/analyzer')">
+        Start Analysis
+      </button>
+    </div>
+    
+    <div class="features-grid">
+      <div class="feature-card">
+        <h3>Fast & Accurate</h3>
+        <p>Trained on over 241k comments for precise sentiment detection.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Deep Insights</h3>
+        <p>Get confidence scores and detailed probability analytics.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Modern UI</h3>
+        <p>Experience a smooth, multi-page application built for modern web.</p>
+      </div>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.home-page {
+  text-align: center;
+  animation: fadeIn 0.5s ease-in;
+}
+
+.hero-section {
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #1e3a8a 0%, #312e81 100%);
+  border-radius: 1rem;
+  margin-bottom: 3rem;
+  color: white;
+}
+
+.headline {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.description {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  opacity: 0.9;
+}
+
+.primary-btn {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+  font-weight: bold;
+}
+
+.primary-btn:hover {
+  background-color: #2563eb;
+  transform: translateY(-2px);
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.feature-card {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.dark-theme .feature-card {
+  background-color: #1e293b;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>

@@ -1,0 +1,169 @@
+<template>
+  <div class="insights-page">
+    <h2>Demo Insights & Analytics</h2>
+    <p class="subtitle">Sample metrics showcasing model performance and dataset statistics.</p>
+    
+    <div class="insights-grid">
+      <div class="insight-card">
+        <h3>Dataset Distribution</h3>
+        <div class="chart-placeholder distribution-chart">
+          <div class="bar" style="height: 40%; background: #ef4444;" title="Negative: 96,400">
+            <span>Negative (40%)</span>
+          </div>
+          <div class="bar" style="height: 25%; background: #9ca3af;" title="Neutral: 60,250">
+            <span>Neutral (25%)</span>
+          </div>
+          <div class="bar" style="height: 35%; background: #10b981;" title="Positive: 84,350">
+            <span>Positive (35%)</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="insight-card">
+        <h3>Model Accuracy</h3>
+        <div class="accuracy-circle">
+          <div class="acc-text">
+            <span class="value">91.4%</span>
+            <span class="label">Accuracy</span>
+          </div>
+        </div>
+        <div class="metrics">
+          <div><span>Precision:</span> 0.92</div>
+          <div><span>Recall:</span> 0.90</div>
+          <div><span>F1 Score:</span> 0.91</div>
+        </div>
+      </div>
+
+      <div class="insight-card stat-card">
+        <h3>Dataset Statistics</h3>
+        <div class="stat-items">
+          <div class="stat-item">
+            <div class="stat-value">241k+</div>
+            <div class="stat-label">Total Comments</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">10k</div>
+            <div class="stat-label">Max Features (TF-IDF)</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">80/20</div>
+            <div class="stat-label">Train/Test Split</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.insights-page {
+  animation: slideIn 0.5s ease;
+}
+
+.subtitle {
+  color: #a0aec0;
+  margin-bottom: 2rem;
+}
+
+.insights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.insight-card {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.dark-theme .insight-card {
+  background-color: #1e293b;
+}
+
+.chart-placeholder {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  height: 200px;
+  margin-top: 1rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #444;
+}
+
+.bar {
+  width: 25%;
+  border-radius: 4px 4px 0 0;
+  position: relative;
+  transition: height 1s ease-out;
+}
+
+.bar span {
+  position: absolute;
+  bottom: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.accuracy-circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 10px solid #3b82f6;
+  border-top-color: #10b981;
+  margin: 1.5rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.acc-text {
+  text-align: center;
+}
+
+.acc-text .value {
+  display: block;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.metrics {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.stat-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.dark-theme .stat-item {
+  border-bottom-color: #334155;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #8b5cf6;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+</style>

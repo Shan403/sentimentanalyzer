@@ -1,0 +1,180 @@
+<template>
+  <div class="analyzer-page">
+    <h2>Sentiment Analyzer</h2>
+    <div class="analyzer-container">
+      <div class="input-section">
+        <textarea 
+          v-model="inputText" 
+          placeholder="Enter text to analyze here..."
+          class="text-input"
+          rows="6"
+        ></textarea>
+        <button 
+          @click="analyzeText" 
+          class="analyze-btn" 
+          :disabled="isAnalyzing || !inputText.trim()"
+        >
+          {{ isAnalyzing ? 'Analyzing...' : 'Analyze Text' }}
+        </button>
+      </div>
+
+      <div class="result-section" v-if="result">
+        <div class="result-card">
+          <h3>Predicted Sentiment</h3>
+          <div class="sentiment-badge" :class="result.sentiment.toLowerCase()">
+            {{ result.sentiment }}
+          </div>
+          <confidence-gauge :confidence="result.confidence" />
+        </div>
+        
+        <div class="visualization-card">
+          <h3>Probability Distribution</h3>
+          <sentiment-chart :scores="result.scores" />
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import SentimentChart from '../components/sentiment_chart.ag'
+import ConfidenceGauge from '../components/confidence_gauge.ag'
+
+export default {
+  components: {
+    SentimentChart,
+    ConfidenceGauge
+  },
+  data() {
+    return {
+      inputText: '',
+      isAnalyzing: false,
+      result: null
+    }
+  },
+  methods: {
+    async analyzeText() {
+      this.isAnalyzing = true;
+      try {
+        const response = await fetch('http://localhost:8000/predict', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ user_text: this.inputText })
+        });
+        const data = await response.json();
+        this.result = data;
+      } catch (error) {
+        console.error("Error analyzing text", error);
+      } finally {
+        this.isAnalyzing = false;
+      }
+    }
+  }
+}
+</script>
+
+<style scoped>
+.analyzer-page {
+  animation: fadeIn 0.4s ease-in;
+}
+
+.analyzer-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .analyzer-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.input-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.text-input {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #e2e8f0;
+  background-color: #ffffff;
+  color: #1e293b;
+  font-family: inherit;
+  font-size: 1rem;
+  resize: vertical;
+}
+
+.dark-theme .text-input {
+  background-color: #1e293b;
+  border-color: #334155;
+  color: #f1f5f9;
+}
+
+.text-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+}
+
+.analyze-btn {
+  background-color: #10b981;
+  color: white;
+  border: none;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.analyze-btn:disabled {
+  background-color: #4b5563;
+  cursor: not-allowed;
+}
+
+.analyze-btn:hover:not(:disabled) {
+  background-color: #059669;
+}
+
+.result-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.result-card, .visualization-card {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  text-align: center;
+}
+
+.dark-theme .result-card, .dark-theme .visualization-card {
+  background-color: #1e293b;
+}
+
+.sentiment-badge {
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  border-radius: 2rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 1rem 0;
+  text-transform: uppercase;
+}
+
+.sentiment-badge.positive { background-color: rgba(16, 185, 129, 0.2); color: #10b981; }
+.sentiment-badge.neutral { background-color: rgba(107, 114, 128, 0.2); color: #9ca3af; }
+.sentiment-badge.negative { background-color: rgba(239, 68, 68, 0.2); color: #ef4444; }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+</style>

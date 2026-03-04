@@ -1,0 +1,123 @@
+<template>
+  <div class="about-page">
+    <h2>About AI Sentiment Analyzer</h2>
+    
+    <div class="content-card">
+      <h3>How the Model Works</h3>
+      <p>
+        Our AI Sentiment Analyzer uses a robust <strong>Logistic Regression</strong> classifier to predict sentiment from textual interactions. 
+        When you submit text, the system undergoes a multi-step Natural Language Processing (NLP) pipeline:
+      </p>
+      <ul>
+        <li><strong>Text Cleaning:</strong> Extra spaces, punctuation, and URLs are stripped out. Text is converted to lowercase.</li>
+        <li><strong>Tokenization & Vectorization:</strong> The cleaned text is processed using a <code>TF-IDF Vectorizer</code> which turns words into numerical features based on term frequency and inverse document frequency.</li>
+        <li><strong>Prediction:</strong> The model evaluates the features and assigns probabilities for each class: Negative, Neutral, and Positive.</li>
+      </ul>
+    </div>
+
+    <div class="content-card">
+      <h3>Dataset Description</h3>
+      <p>
+        The model is trained on a substantial corpus labeled <code>sentiment_data.csv</code>. 
+        The dataset details:
+      </p>
+      <ul>
+        <li><strong>Size:</strong> Approximately 241,000 text comments.</li>
+        <li><strong>Structure:</strong> Columns include <code>index</code>, <code>comment</code>, and <code>sentiment</code>.</li>
+        <li><strong>Labels:</strong> 0 (Negative), 1 (Neutral), 2 (Positive).</li>
+      </ul>
+    </div>
+
+    <div class="content-card">
+      <h3>Model Performance Metrics</h3>
+      <p>
+        The dataset is split 80/20 for training and testing. Based on current evaluations:
+      </p>
+      <div class="metric-tags">
+        <span class="tag">High Accuracy</span>
+        <span class="tag">Lightweight Engine</span>
+        <span class="tag">FastAPI Backend</span>
+        <span class="tag">Real-time Inference</span>
+      </div>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.about-page {
+  max-width: 800px;
+  margin: 0 auto;
+  animation: fadeIn 0.4s ease-in;
+}
+
+.content-card {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 1rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.insight-card {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.dark-theme .insight-card {
+  background-color: #1e293b;
+}
+
+.dark-theme .content-card {
+  background-color: #1e293b;
+}
+
+h3 {
+  color: #3b82f6;
+  margin-top: 0;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 0.5rem;
+}
+
+.dark-theme h3 {
+  border-bottom-color: #334155;
+}
+
+ul {
+  padding-left: 1.5rem;
+  line-height: 1.6;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+code {
+  background-color: #2d3748;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+.metric-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.tag {
+  background-color: #374151;
+  color: #d1d5db;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+</style>
