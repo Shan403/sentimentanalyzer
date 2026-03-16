@@ -1,43 +1,65 @@
-# AI Sentiment Analyzer 🚀
+# AI Sentiment Analyzer Pro
 
-A professional, full-stack AI application that predicts the sentiment of text using Machine Learning.
+An enterprise-grade, full-stack AI application designed to analyze the sentiment of text in real-time. Upgraded to use **Deep Learning Transformers**, A/B Testing, WebSockets, and Cloud CI/CD.
 
-## ✨ Features
-- **Real-time Prediction**: Instantly detect if text is Positive, Neutral, or Negative.
-- **Batch Analysis**: Analyze multiple lines of text simultaneously.
-- **Visual Analytics**: Interactive confidence gauges and probability distribution charts.
-- **Modern UI**: Multi-page design with smooth transitions and **Light/Dark mode** support.
-- **FastAPI Backend**: High-performance Python API for ML inference.
+## 🌟 Enterprise Features
 
-## 🛠️ Tech Stack
-- **Backend**: Python, FastAPI, scikit-learn, pandas, numpy.
-- **Frontend**: Vite, Vue 3 (Antigravity architecture), CSS Grid/Flexbox.
-- **ML Model**: Logistic Regression with TF-IDF Vectorization.
+*   **Deep Learning (Transformers)**: Replaced basic ML techniques with HuggingFace's `distilbert-base-uncased-finetuned-sst-2` for state-of-the-art context and semantic understanding.
+*   **A/B Testing routing**: Live traffic is routed simultaneously between Model A (DistilBERT) and Model B (VADER Heuristics) to compare edge-case accuracy on the fly.
+*   **Real-time Streaming**: Connect via WebSockets (`ws://`) to stream simulated live social media text directly into the inference engine with ZERO overhead.
+*   **Model Monitoring & Drift Detection**: Integrated Prometheus metrics for continuous MLOps and a batch data-drift evaluator to automatically flag accuracy regressions. 
+*   **Modern Frontend framework**: Built on standard Vue SFCs (`.vue`), Vite, and styled cohesively.
+*   **Cloud Ready**: Full `Dockerfile` and automated GitHub Action CI/CD pipelines. Config maps included for fast `Render` backend and `Vercel` HTTP static deployment.
 
-## 🚀 Getting Started
+## 📂 Project Architecture
 
-### 1. Clone & Setup Backend
+```text
+sentiment_analyzer/
+├── backend/
+│   ├── main.py                # FastAPI server (WebSockets, Prometheus, A/B Engine)
+│   ├── sentiment_predictor.py  # Model inference loader (Transformer + VADER)
+│   └── train_model.py          # MLOps Drift Evaluation Script
+├── frontend/
+│   ├── components/            # Vue UI components (Charts, Gauges)
+│   ├── pages/                 # Multi-page Vue views (Stream, Analyze, Insights)
+│   ├── app.vue                # Main application shell
+│   ├── main.js                # Frontend entry & Routing
+│   ├── index.html             # HTML template
+│   ├── package.json           # Frontend dependencies
+│   ├── vercel.json            # Deployment config for frontend
+│   └── vite.config.js         # Build configuration
+├── Dockerfile                 # Container image steps
+├── render.yaml                # Deployment config for backend
+├── .github/workflows          # CI/CD Action definitions
+├── README.md                  # Project documentation
+└── requirements.txt           # Python backend dependencies
+```
+
+## 🚀 Getting Started Locally
+
+### 1. Start the Backend Server
+Requires Python 3.10+. This will automatically download the HuggingFace `distilbert` model on the first run.
 ```bash
-# Clone the repository
-git clone <your-repo-url>
-cd sentiment_analyzer
-
 # Install dependencies
 pip install -r requirements.txt
 
-# Train the model (optional if .pkl exists)
-python backend/train_model.py
+# Run the FastAPI server
+python -m uvicorn backend.main:app --host 127.0.0.1 --port 8000 --reload
+```
+*API is accessible at http://127.0.0.1:8000*
+*Prometheus Metrics are accessible at http://127.0.0.1:8000/metrics*
 
-# Run backend
-python -m uvicorn backend.main:app --reload
+### 2. Monitor Data Drift
+To run a batch analytics test mimicking an MLOps drift warning system:
+```bash
+python backend/train_model.py
 ```
 
-### 2. Setup Frontend
+### 3. Start the Frontend Dashboard
+Open a new terminal session.
 ```bash
 cd frontend
 npm install
 npm run dev
 ```
-
-## 📊 Model Information
-The model was trained on a dataset of ~241k comments using TF-IDF feature extraction and a Logistic Regression classifier, achieving high accuracy for sentiment classification.
+*Dashboard is accessible at http://localhost:5173*
