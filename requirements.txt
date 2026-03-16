@@ -1,0 +1,13 @@
+fastapi
+uvicorn[standard]
+pydantic
+scikit-learn
+pandas
+numpy
+matplotlib
+seaborn
+transformers
+torch
+prometheus-fastapi-instrumentator
+websockets
+evidently
