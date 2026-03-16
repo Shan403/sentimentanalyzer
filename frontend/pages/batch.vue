@@ -91,7 +91,7 @@ export default {
       
       try {
         for (const line of lines) {
-          const response = await fetch('http://localhost:8000/predict', {
+          const response = await fetch('https://sentiment-analyzer-backend-u9jw.onrender.com/predict', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ user_text: line })

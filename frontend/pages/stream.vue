@@ -56,7 +56,7 @@ export default {
         }
         this.isConnected = false;
       } else {
-        this.socket = new WebSocket('ws://localhost:8000/ws/stream');
+        this.socket = new WebSocket('wss://sentiment-analyzer-backend-u9jw.onrender.com/ws/stream');
         
         this.socket.onopen = () => {
           this.isConnected = true;
