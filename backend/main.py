@@ -93,6 +93,6 @@ async def websocket_endpoint(websocket: WebSocket):
         task.cancel()
         print("Client disconnected from inference stream.")
 
-@app.get("/health")
+@app.get("/healthz")
 def health_check():
     return {"status": "ok"}
