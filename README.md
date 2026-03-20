@@ -34,32 +34,4 @@ sentiment_analyzer/
 ├── README.md                  # Project documentation
 └── requirements.txt           # Python backend dependencies
 ```
-
-## 🚀 Getting Started Locally
-
-### 1. Start the Backend Server
-Requires Python 3.10+. This will automatically download the HuggingFace `distilbert` model on the first run.
-```bash
-# Install dependencies
-pip install -r requirements.txt
-
-# Run the FastAPI server
-python -m uvicorn backend.main:app --host 127.0.0.1 --port 8000 --reload
-```
-*API is accessible at http://127.0.0.1:8000*
-*Prometheus Metrics are accessible at http://127.0.0.1:8000/metrics*
-
-### 2. Monitor Data Drift
-To run a batch analytics test mimicking an MLOps drift warning system:
-```bash
-python backend/train_model.py
-```
-
-### 3. Start the Frontend Dashboard
-Open a new terminal session.
-```bash
-cd frontend
-npm install
-npm run dev
-```
-*Dashboard is accessible at http://localhost:5173*
+*Dashboard is accessible at https://sentimentanalyzer-six.vercel.app/#/ *
